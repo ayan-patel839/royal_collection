@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 // 1. TypeScript Interface (MongoDB wale data se 100% match)
 interface CartItem {
@@ -14,10 +15,41 @@ interface CartStore {
 }
 
 // 3. Global Store Creation
-export const useCartStore = create<CartStore>((set) => ({
-  cart: [],
-  addToCart: (item) => 
-    set((state) => ({ 
-      cart: [...state.cart, item] 
-    })),
-}));
+export const useCartStore = create<CartStore>()(
+  persist(
+    (set) => ({
+      cart:[],
+      addToCart:(item) => 
+        set((state) => ({
+          cart: [...state.cart , item]
+        })),
+    }),
+    {
+      name:'royal-cart-storage' , 
+    }
+  )
+)
+
+// Main code yhi he||
+//                 \/ sirf ye example he ke persist kahahn ayega 
+
+// export const useCartStore = create()(
+//   persist(
+//     (set, get) => ({
+//       cartItems: [], // Aapka purana state
+      
+//       addToCart: (product) => {
+//         // Aapka purana add logic
+//       },
+      
+//       removeFromCart: (productId) => {
+//         // Aapka purana remove logic
+//       },
+      
+//       clearCart: () => set({ cartItems: [] }),
+//     }),
+//     {
+//       name: 'royal-cart-storage', // Yeh naam browser ke local storage mein dikhega
+//     }
+//   )
+// );

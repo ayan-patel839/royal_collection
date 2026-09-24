@@ -25,9 +25,8 @@ export async function addProducts(prevState: any, formData: FormData) {
     const rawData = {
       name: formData.get("name"),
       price: Number(formData.get("price")),
-      image: "https://via.placeholder.com/150", // 🚀 Yeh default image pass kar degi taaki database error na aaye
+      image: formData.get("image") as string, // 🚀 Hardcoded link hata diya, ab form ka data aayega
     };
-
     // Zod Validation
     const validatedData = productSchema.safeParse(rawData);
     if (!validatedData.success) {
