@@ -16,10 +16,10 @@ export default function SuccessPage() {
         </div>
 
         <h1 className="text-3xl font-extrabold text-white mb-4 tracking-tight uppercase">
-          Order Confirmed
+          Alhamdulillah Product add hogya he
         </h1>
         <p className="text-zinc-400 mb-10 text-sm leading-relaxed">
-          Mubarak ho! Aapka payment verify ho chuka hai aur 'Royal Collection' ka premium order lock ho gaya hai.
+          Mubarak ho! Aapka payment verify ho chuka hai
         </p>
 
         {/* Back to Home Button - High Contrast Apple Style */}

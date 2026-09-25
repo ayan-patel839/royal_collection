@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const signature = (await headers()).get('stripe-signature') as string;
 
   try {
-    // 2. Stripe ka Bouncer (Security Check)
+    // 2. Stripe ka Bouncer (Security Check)  "Kaccha Maal"
     const event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
 
     // 3. Payment Success ka Confirmation

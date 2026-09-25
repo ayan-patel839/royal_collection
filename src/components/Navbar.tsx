@@ -1,9 +1,18 @@
 "use client"; 
 
 import { useCartStore } from "@/store/useCartStore";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
     const cart = useCartStore((state) => state.cart);
+
+    const pathname = usePathname();
+
+  // Agar current URL /success (ya aapke order page ka jo bhi naam hai) hai, toh Navbar return mat karo
+  if (pathname === '/success') {
+    return null;
+  }
 
     return (
         <nav className="bg-black text-white p-4 sticky top-0 z-50 border-b border-zinc-800/80 backdrop-blur-md">
