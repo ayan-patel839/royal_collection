@@ -13,12 +13,12 @@ export default function EditButton({ productId, currentName, currentPrice }: { p
             className="flex gap-2 mt-1 items-center ">
             <input name="name"
                 defaultValue={currentName}
-                className="border text-xs w-20 text-black p-1 rounded" required />
+                className="border text-xs w-20 text-white p-1 rounded" required />
 
             <input name="price"
                 type="number"
                 defaultValue={currentPrice}
-                className="border text-xs w-16 text-black p-1 rounded" required />
+                className="border text-xs w-16 text-white p-1 rounded" required />
 
             <button type="submit" className="bg-green-600 text-white px-2 py-1 rounded text-xs font-bold">Save</button>
             <button type="button" onClick={() => setShow(false)} className="text-gray-500 text-xs font-bold">✕</button>

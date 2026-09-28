@@ -2,12 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { verifyAuth } from './lib/auth';
 
-
-// const protectedRoutes = ['/admin', '/checkout'];
-const protectedRoutes: string[] = []; // Filhal ke liye admin khula chhod diya
+const protectedRoutes = ['/admin', '/checkout'];
 const authRoutes = ['/login'];
 
-export async function proxy(request: NextRequest) {
+// SIRF YAHAN 'default' ADD KIYA HAI
+export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   const isProtectedRoute = protectedRoutes.some((route) => path.startsWith(route));
@@ -28,5 +27,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

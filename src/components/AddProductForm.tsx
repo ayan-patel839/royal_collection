@@ -17,7 +17,7 @@ function SubmitButton() {
         <button
             type="submit"
             disabled={pending}
-            className={`px-6 py-3 rounded-lg font-semibold transition-all shadow-md mt-2 text-white ${pending ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+            className={`px-6 py-3 rounded-lg font-semibold transition-all shadow-md mt-2 text-white ${pending ? "bg-gray-200 cursor-not-allowed" : "bg-slate-800 hover:bg-slate-600"
                 }`}
         >
             {pending ? "Saving... ⏳" : "➕ Save to Royal Collection"}
@@ -29,21 +29,21 @@ export default function AddProductForm() {
     const [state, formAction] = useActionState(addProducts, initialState);
 
     return (
-        <div className="border-2 border-dashed border-gray-400 p-8 rounded-xl bg-white mb-10 w-full max-w-md shadow-sm">
-            <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add New Product ✍️</h1>
+        <div className=" p-8 rounded-xl bg-zinc-700 mb-10 w-full max-w-md shadow-sm">
+            <h1 className="text-2xl font-bold text-zinc-400 mb-6 text-center">Add New Product ✍️</h1>
 
             <form action={formAction} className="flex flex-col gap-4">
                 <input
                     type="text"
                     name="name"
                     placeholder="Product Name (e.g. Diamond Ring)"
-                    className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
+                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-white-800 transition-all"
                 />
                 <input
                     type="text"
                     name="price"
                     placeholder="Price (e.g. 50000)"
-                    className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
+                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-white-600 transition-all"
                 />
 
                 {state?.message && (
