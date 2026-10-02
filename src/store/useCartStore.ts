@@ -12,23 +12,25 @@ interface CartItem {
 interface CartStore {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
+  clearCart: () => void; // 🚀 Naya function type add kiya
 }
 
 // 3. Global Store Creation
 export const useCartStore = create<CartStore>()(
   persist(
     (set) => ({
-      cart:[],
-      addToCart:(item) => 
+      cart: [],
+      addToCart: (item) => 
         set((state) => ({
-          cart: [...state.cart , item]
+          cart: [...state.cart, item]
         })),
+      clearCart: () => set({ cart: [] }), // 🚀 Cart ko instantly empty karne ka logic
     }),
     {
-      name:'royal-cart-storage' , 
+      name: 'royal-cart-storage', 
     }
   )
-)
+);
 
 // Main code yhi he||
 //                 \/ sirf ye example he ke persist kahahn ayega 
