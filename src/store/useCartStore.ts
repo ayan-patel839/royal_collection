@@ -12,7 +12,7 @@ interface CartItem {
 interface CartStore {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
-  clearCart: () => void; // 🚀 Naya function type add kiya
+  clearCart: () => void; 
 }
 
 // 3. Global Store Creation
@@ -24,7 +24,7 @@ export const useCartStore = create<CartStore>()(
         set((state) => ({
           cart: [...state.cart, item]
         })),
-      clearCart: () => set({ cart: [] }), // 🚀 Cart ko instantly empty karne ka logic
+      clearCart: () => set({ cart: [] }),
     }),
     {
       name: 'royal-cart-storage', 

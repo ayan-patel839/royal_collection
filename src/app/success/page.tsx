@@ -1,6 +1,16 @@
 import Link from "next/link";
+import { useEffect } from "react";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function SuccessPage() {
+
+  const clearCart = useCartStore((state) => state.clearCart);
+
+  useEffect(() => {
+    clearCart(); 
+  }, [clearCart]);
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black p-4">
       {/* Premium Dark Card */}
