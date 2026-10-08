@@ -15,9 +15,6 @@ export default function LoginPage() {
           <span className="text-4xl">👑</span>
         </div>
         <h1 className="text-3xl font-extrabold text-white mb-4 uppercase tracking-tight">Admin Access</h1>
-        <p className="text-zinc-400 mb-8 text-sm leading-relaxed">
-          'Royal Collection' control panel mein swagat hai.
-        </p>
 
         <form action={formAction} className="flex flex-col gap-5 text-left">
           <div>
