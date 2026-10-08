@@ -28,7 +28,7 @@ A full-stack e-commerce platform built with Next.js 16 App Router, React, TypeSc
 - **Form Validation:** Used Zod for runtime validation with TypeScript types through `z.infer`.
 
 - **Responsive UI:** Built a responsive e-commerce interface using Tailwind CSS with skeleton loading states.
-- 
+  
 
   <img width="1166" height="706" alt="Architecture" src="https://github.com/user-attachments/assets/96e180b8-9c80-4064-891d-0d2928640748" />
 
