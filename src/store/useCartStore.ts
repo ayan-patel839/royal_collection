@@ -33,7 +33,7 @@ export const useCartStore = create<CartStore>()(
   )
 );
 
-// Main code yhi he||
+// Main code yhi he||  2- PART OF THE CODE
 //                 \/ sirf ye example he ke persist kahahn ayega 
 
 // export const useCartStore = create()(

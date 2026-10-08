@@ -22,11 +22,10 @@ export default async function Home() {
               <div>
                 {/* Image Container - White bg for Nike/Apple style product pop */}
                 <div className="relative h-64 w-full mb-6 rounded-2xl overflow-hidden group bg-white border border-zinc-800 flex items-center justify-center p-4">
-                  <Image
+                  <img
                     src={item.image || "/globe.svg"}
                     alt={item.name}
-                    fill
-                    className="object-contain p-4 transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-zinc-100 line-clamp-2 leading-snug tracking-wide">{item.name}</h3>

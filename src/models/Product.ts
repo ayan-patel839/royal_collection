@@ -23,7 +23,7 @@ const prodcutSchema = new mongoose.Schema<Iproduct>({
 
     image: {
         type: String,
-        default: "https://via.placeholder.com/150", // Agar image na de toh yeh apne aap lag jayegi
+        required : true
     },
 
 

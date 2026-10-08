@@ -9,7 +9,6 @@ const initialState = {
     message: "",
 };
 
-// Naya loading button
 function SubmitButton() {
     const { pending } = useFormStatus();
 
@@ -30,20 +29,29 @@ export default function AddProductForm() {
 
     return (
         <div className=" p-8 rounded-xl bg-zinc-700 mb-10 w-full max-w-md shadow-sm">
-            <h1 className="text-2xl font-bold text-zinc-400 mb-6 text-center">Add New Product ✍️</h1>
+            <h1 className="text-2xl font-bold text-white mb-6 text-center">Add New Product ✍️</h1>
 
-            <form action={formAction} className="flex flex-col gap-4">
+            <form action={formAction} className="flex flex-col gap-4 ">
                 <input
                     type="text"
                     name="name"
                     placeholder="Product Name (e.g. Diamond Ring)"
-                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-white-800 transition-all"
+                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-zinc-800 transition-all text-white"
                 />
                 <input
                     type="text"
                     name="price"
                     placeholder="Price (e.g. 50000)"
-                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-white-600 transition-all"
+                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-zinc-800 transition-all text-white"
+                />
+
+                {/* Product Image Upload */}
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    required
+                    className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-transparent text-zinc-200 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-zinc-100 file:text-zinc-900 hover:file:bg-zinc-200"
                 />
 
                 {state?.message && (
@@ -52,7 +60,6 @@ export default function AddProductForm() {
                     </p>
                 )}
 
-                {/* Humara smart button */}
                 <SubmitButton />
             </form>
         </div>

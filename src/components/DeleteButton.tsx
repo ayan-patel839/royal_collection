@@ -23,11 +23,11 @@ export default function DeleteButton({ productId }: DeleteProps) {
             onClick={handleDelete}
             disabled={isPending}
             className={`px-4 py-2 rounded-lg font-bold text-sm overflow-hidden transition-all shadow-md active:scale-95 ${isPending
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-red-500 hover:bg-red-600 text-white"
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-red-500 hover:bg-red-600 text-white"
                 }`}
         >
-            {isPending ? "Deleting... ⏳" : "Deleted 🗑️"}
+            {isPending ? "Deleting... ⏳" : "Delete 🗑️"}
         </button>
     );
 };
