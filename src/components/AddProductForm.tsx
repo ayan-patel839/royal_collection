@@ -47,9 +47,9 @@ export default function AddProductForm() {
 
                 {/* Product Image Upload */}
                 <input
-                    type="file"
+                    type="text"
                     name="image"
-                    accept="image/*"
+                    placeholder="Image URL (e.g. https://..)"
                     required
                     className="border border-zinc-500 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-transparent text-zinc-200 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-zinc-100 file:text-zinc-900 hover:file:bg-zinc-200"
                 />
