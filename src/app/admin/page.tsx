@@ -1,5 +1,5 @@
 import { getProducts } from "@/actions/productActions";
-import { getStoreAnalytics } from "@/actions/adminActions"; // <-- Aggregation action import kiya
+import { getStoreAnalytics } from "@/actions/adminActions"; // <-- Aggregation import
 import AddProductForm from "@/components/AddProductForm";
 import DeleteButton from "@/components/DeleteButton";
 import EditButton from "@/components/EditButton";

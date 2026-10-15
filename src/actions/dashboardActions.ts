@@ -8,7 +8,6 @@ export async function getDashboardStats() {
         await connectDB()
 
         const stats = await Order.aggregate([
-
             {
                 $match:{
                     paymentStatus: "paid"
@@ -23,18 +22,13 @@ export async function getDashboardStats() {
 
                 }
             }
-
         ])
 
         if (stats.length === 0 ) {
-
+            
             return {totalRevenue : 0 , totalOrders:0}
-
         }
-
         return JSON.parse(JSON.stringify(stats[0]))
-
-
     }
 
     catch (error){
@@ -43,5 +37,4 @@ export async function getDashboardStats() {
         return {totalRevenue:0 , totalOrder:0}
 
     }
-    
 }

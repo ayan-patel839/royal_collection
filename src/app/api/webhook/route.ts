@@ -8,12 +8,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-08
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: Request) {
-  // 1. Raw Data aur Stamp (Signature) pakadna
+ // 1. Extract raw body and Stripe signature from headers
   const body = await req.text();
   const signature = (await headers()).get('stripe-signature') as string;
 
   try {
-    // 2. Stripe ka Bouncer (Security Check)  "Kaccha Maal"
+   // 2. Verify webhook signature and construct event
     const event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
 
     // 3. Payment Success ka Confirmation
@@ -29,11 +29,11 @@ export async function POST(req: Request) {
       });
     }
 
-    // 5. Stripe ko "OK" message bhejna
+    // 5. Send "Ok" message to Stripe
     return NextResponse.json({ received: true });
 
   } catch (err: any) {
-    // Agar Hacker ne fake request bheji toh error
+    // Handle signature verification failure or processing errors
     return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
   }
 }

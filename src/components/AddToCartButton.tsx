@@ -1,8 +1,7 @@
-"use client"; // 🚀 Button click browser par hota hai, isliye Client Component
-
+"use client"; // Required for DOM interactivity (onClick handler)
 import { useCartStore } from "@/store/useCartStore";
 
-// TypeScript Interface: Button ko pata hona chahiye ki kaunsa item aa raha hai
+// TypeScript Interface:
 interface ButtonProps {
     item: {
         _id: string;
@@ -12,7 +11,7 @@ interface ButtonProps {
 }
 
 export default function AddToCartButton({ item }: ButtonProps) {
-    // Zustand store se 'addToCart' wala action (function) bahar nikalna
+    // Extract addToCart mutation from global store
     const addToCart = useCartStore((state) => state.addToCart);
 
     return (

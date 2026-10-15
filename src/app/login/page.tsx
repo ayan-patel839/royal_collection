@@ -1,10 +1,10 @@
 "use client"; // Error state dikhane ke liye isey client component banana hoga
 
 import { useActionState } from "react";
-import { loginUser } from "@/actions/loginAction"; // Apna sahi path check kar lijiyega
+import { loginUser } from "@/actions/loginAction";// Check Your Path
 
 export default function LoginPage() {
-  // state mein wo aayega jo aap backend se return karenge (jaise { error: "..." })
+  // Manage form state and pending status for the server-side login action
   const [state, formAction, isPending] = useActionState(loginUser, null);
 
   return (
@@ -40,7 +40,7 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Backend se aane wala Error yahan dikhega */}
+          {/* Error show from backend  */}
           {state?.error && (
             <p className="text-red-500 text-sm font-semibold">{state.error}</p>
           )}

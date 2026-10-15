@@ -6,41 +6,41 @@ import Order from "@/models/Order";
 
 // Stripe engine start kar rahe hain
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: "2026-08-26.dahlia", // Webhook version se match karna zaroori hai
+    apiVersion: "2026-08-26.dahlia", // Webhook version se match karna zaroori hai
 });
 
 export async function createCheckoutSession(cartItems: any[]) {
     try {
-        // 1. Database se connection jodo
+        // 1. Connect TO DATABASE
         await connectDB();
 
-        // 2. Kachha Maal (Pending Order) banao
+        // 2. Initialize a pending order record in the database
         const newOrder = await Order.create({
             status: 'Pending',
             // Note: Aage chal kar hum yahan user ki email aur total amount bhi save karenge
         });
 
-        // 3. Stripe ke format mein items set karo
+        // 3. Set items in stripe Fromat
         const stripeLineItems = cartItems.map((item) => ({
             price_data: {
                 currency: "inr",
                 product_data: {
                     name: item.name,
                 },
-                unit_amount: item.price * 100, // ₹ ko paise mein convert karna 
+                unit_amount: item.price * 100, // ₹ ko inr  mein convert karna 
             },
             quantity: 1,
         }));
 
-        // 4. Stripe Bouncer ko Metadata (Order ID) ke sath call karo
+        // 4. Create Stripe Checkout session with embedded Order ID metadata for webhook fulfillment
         const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card" , "upi"],
+            payment_method_types: ["card", "upi"],
             mode: "payment",
             line_items: stripeLineItems,
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/success` , 
+            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/success`,
             cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/?canceled=true`,
             metadata: {
-                orderId: newOrder._id.toString(), // YAHAN HAI ASLI JADU!
+                orderId: newOrder._id.toString(), // Attach database order ID to Stripe session metadata
             }
         });
 

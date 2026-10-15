@@ -2,9 +2,9 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-// 1. TypeScript Interface (MongoDB wale data se 100% match)
+// 1. TypeScript Interface (MongoDB data 100% match) from this.
 interface CartItem {
-  _id: string;   // 🚀 Underscore ke sath id
+  _id: string;  
   name: string;
   price: number;
 }
@@ -33,26 +33,3 @@ export const useCartStore = create<CartStore>()(
   )
 );
 
-// Main code yhi he||  2- PART OF THE CODE
-//                 \/ sirf ye example he ke persist kahahn ayega 
-
-// export const useCartStore = create()(
-//   persist(
-//     (set, get) => ({
-//       cartItems: [], // Aapka purana state
-      
-//       addToCart: (product) => {
-//         // Aapka purana add logic
-//       },
-      
-//       removeFromCart: (productId) => {
-//         // Aapka purana remove logic
-//       },
-      
-//       clearCart: () => set({ cartItems: [] }),
-//     }),
-//     {
-//       name: 'royal-cart-storage', // Yeh naam browser ke local storage mein dikhega
-//     }
-//   )
-// );

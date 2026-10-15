@@ -5,7 +5,6 @@ import { verifyAuth } from './lib/auth';
 const protectedRoutes = ['/admin', '/checkout'];
 const authRoutes = ['/login'];
 
-// SIRF YAHAN 'default' ADD KIYA HAI
 export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
@@ -28,4 +27,4 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
-};
+}

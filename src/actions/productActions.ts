@@ -5,19 +5,19 @@ import Product from "@/models/Product";
 import { productSchema } from "@/lib/zodSchemas";
 import { revalidatePath } from "next/cache";
 
-// 1. Naya Product Add karna (Normal aur Clean Approach)
+// 1. Create a new product entry
 export async function addProducts(prevState: any, formData: FormData) {
   try {
     await connectDB();
 
-    // FormData se basic details nikalna (Image ka direct URL aayega)
+    // Extract payload from FormData
     const rawData = {
       name: formData.get("name"),
       price: Number(formData.get("price")),
-      image: formData.get("image"), // Direct URL (No Cloudinary buffer magic)
+      image: formData.get("image"), // Expecting direct URL string
     };
 
-    // Zod se Validate karna
+    // Validate payload against schema
     const validatedData = productSchema.safeParse(rawData);
 
     if (!validatedData.success) {
@@ -28,10 +28,10 @@ export async function addProducts(prevState: any, formData: FormData) {
       };
     }
 
-    // Database mein save karna
+    // Persist validated data to database
     await Product.create(validatedData.data);
 
-    // Cache clear karna taaki UI turant update ho jaye
+    // Purge cache to reflect new data on UI
     revalidatePath("/");
     revalidatePath("/admin");
 
@@ -44,7 +44,7 @@ export async function addProducts(prevState: any, formData: FormData) {
 }
 
 
-// 2. Database se Products laana
+// 2. Fetch all products
 export async function getProducts() {
   try {
     await connectDB();
@@ -57,7 +57,7 @@ export async function getProducts() {
 }
 
 
-// 3. Product Delete karna
+// 3. Delete product by ID
 export async function deleteProduct(id: string) {
   try {
     await connectDB();
@@ -70,7 +70,7 @@ export async function deleteProduct(id: string) {
 }
 
 
-// 4. Product Update karna
+// 4. Update existing product
 export async function updateProduct(id: string, formData: FormData) {
   try {
     await connectDB();

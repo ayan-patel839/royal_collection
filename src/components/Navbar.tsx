@@ -9,7 +9,7 @@ export default function Navbar() {
 
     const pathname = usePathname();
 
-    // Agar current URL /success (ya aapke order page ka jo bhi naam hai) hai, toh Navbar return mat karo
+    // Hide Navbar on specific routes (e.g., checkout success, login, admin) to maintain user focus on critical flows.
     if (pathname === '/success' || pathname === '/login' || pathname.startsWith('/admin')) {
         return null;
     }

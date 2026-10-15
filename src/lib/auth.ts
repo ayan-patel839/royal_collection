@@ -3,7 +3,6 @@
 import { jwtVerify, SignJWT } from 'jose';
 import { cookies } from 'next/headers';
 
-// Secret key ko .env file mein daalna best practice hai, par abhi fallback diya hai
 const secretKey = process.env.JWT_SECRET || 'royal-collection-secret-123';
 const key = new TextEncoder().encode(secretKey);
 

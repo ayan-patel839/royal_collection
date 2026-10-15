@@ -11,16 +11,16 @@ export async function getStoreAnalytics() {
         const stats = await Product.aggregate([
             {
                 $group: {
-                    _id: null, // Sabhi products ko ek group mein daal rahe hain
-                    totalItems: { $sum: 1 }, // Total count nikalega
-                    averagePrice: { $avg: "$price" }, // Sabka average price
-                    maximumPrice: { $max: "$price" }, // Sabse mehenga item
-                    totalInventoryValue: { $sum: "$price" } // Poore store ka total amount
+                    _id: null, // All products in one group 
+                    totalItems: { $sum: 1 }, // Total count 
+                    averagePrice: { $avg: "$price" }, // average price
+                    maximumPrice: { $max: "$price" }, // expensive item
+                    totalInventoryValue: { $sum: "$price" } // Total Amount of store 
                 }
             }
         ]);
 
-        // Agar database khali hai toh default 0 bhejenge
+        // If databse is empty we send 0 as default
         return stats[0] || { totalItems: 0, averagePrice: 0, maximumPrice: 0, totalInventoryValue: 0 };
 
     } catch (error) {
