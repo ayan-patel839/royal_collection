@@ -54,3 +54,10 @@ Admin Login → Protected Dashboard → Orders & Data → MongoDB Aggregation
 
 ```bash
 npm install
+
+3. Set up environment variables:
+Copy `.env.example` to `.env.local` and replace the dummy values with your actual credentials.
+
+4. Run the development server:
+`npm run dev`
+
