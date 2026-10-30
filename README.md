@@ -32,6 +32,13 @@ A full-stack e-commerce platform built with Next.js 16 App Router, React, TypeSc
 
   <img width="1166" height="706" alt="Architecture" src="https://github.com/user-attachments/assets/96e180b8-9c80-4064-891d-0d2928640748" />
 
+## 💻 User Interface
+
+### 🛒 Frontend (Customer Store)
+<img width="1305" height="806" alt="royal thumbnail" src="https://github.com/user-attachments/assets/ecd1ba0e-9481-44d9-abf0-7e870d465c0d" />
+
+### 🛡️ Secure Admin Dashboard (Protected Route)
+<img width="1036" height="586" alt="Admin dashboard" src="https://github.com/user-attachments/assets/6e552346-ac63-4086-b795-02c4dd551522" />
 
 ## 📂 Project Flow
 
