@@ -1,7 +1,7 @@
 import { getProducts } from "@/actions/productActions";
 import AddToCartButton from "@/components/AddToCartButton";
 import Image from "next/image";
-
+import AISearchBar from "@/components/AISearchBar";
 export default async function Home() {
   const products = await getProducts();
 
@@ -13,6 +13,10 @@ export default async function Home() {
         <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-12 text-center tracking-tighter">
           ROYAL COLLECTION
         </h2>
+
+        <div className="flex justify-center mb-12">
+          <AISearchBar />
+        </div>
 
         {/* Midnight Stealth Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -38,6 +42,9 @@ export default async function Home() {
 
             </div>
           ))}
+
+
+
         </div>
       </div>
     </main>

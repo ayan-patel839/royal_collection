@@ -5,6 +5,9 @@ export interface Iproduct {
     name: String,
     price: Number,
     image: String
+    embedding?: number[]
+
+
 
 }
 
@@ -23,7 +26,12 @@ const prodcutSchema = new mongoose.Schema<Iproduct>({
 
     image: {
         type: String,
-        required : true
+        required: true
+    },
+
+    embedding: {
+        type: [Number],
+        default: [],
     },
 
 

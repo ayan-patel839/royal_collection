@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 import { productSchema } from "@/lib/zodSchemas";
 import { revalidatePath } from "next/cache";
+import { generateEmbedding } from "@/lib/embeddings";
 
 // 1. Create a new product entry
 export async function addProducts(prevState: any, formData: FormData) {
@@ -15,6 +16,7 @@ export async function addProducts(prevState: any, formData: FormData) {
       name: formData.get("name"),
       price: Number(formData.get("price")),
       image: formData.get("image"), // Expecting direct URL string
+
     };
 
     // Validate payload against schema
@@ -27,6 +29,18 @@ export async function addProducts(prevState: any, formData: FormData) {
         message: "Please fill all fields correctly!"
       };
     }
+    const textToEmbed = `${validatedData.data.name} - Price: ₹${validatedData.data.price}`;
+    const embedding = await generateEmbedding(textToEmbed);
+
+
+    await Product.create({
+      ...validatedData.data,
+      embedding,
+    });
+
+    // Purge cache to reflect new data on UI
+    revalidatePath("/");
+    revalidatePath("/admin");
 
     // Persist validated data to database
     await Product.create(validatedData.data);
@@ -74,9 +88,12 @@ export async function deleteProduct(id: string) {
 export async function updateProduct(id: string, formData: FormData) {
   try {
     await connectDB();
-    const name = formData.get("name");
+    const name = String(formData.get("name"));
     const price = Number(formData.get("price"));
-    await Product.findByIdAndUpdate(id, { name, price });
+
+    const embedding = await generateEmbedding(`${name} - Price: ₹${price}`);
+
+    await Product.findByIdAndUpdate(id, { name, price, embedding });
     revalidatePath("/");
     revalidatePath("/admin");
   } catch (error) {
