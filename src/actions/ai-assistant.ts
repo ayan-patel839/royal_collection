@@ -92,7 +92,7 @@ export async function askRoyalAssistant(userQuery: string) {
             text: {
               query: userQuery,
               path: ["name", "description", "category"],
-              fuzzy: { maxEdits: 1 }, 
+              fuzzy: { maxEdits: 1 },
             },
           },
         },
@@ -142,7 +142,7 @@ Return strictly a JSON object with this exact structure:
     });
 
     const rawText = response.text;
-    if (!rawText) throw new Error("Gemini se empty response aaya");
+    if (!rawText) throw new Error("Empty response from Gemini");
 
     const parsedData = JSON.parse(rawText);
     const validated = AIResponseSchema.safeParse(parsedData);
@@ -154,6 +154,6 @@ Return strictly a JSON object with this exact structure:
     return { success: true, data: validated.data };
   } catch (error) {
     console.error("Hybrid RAG Error:", error);
-    return { success: false, error: "Assistant abhi respond nahi kar pa raha." };
+    return { success: false, error: "Assistant Can't Respond , Try After Sometime" };
   }
 }
